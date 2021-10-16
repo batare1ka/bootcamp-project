@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./style.css"/>
+    <title>Bootstrap Portfolio</title>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg bg-warning navbar-light py-3 sticky-top"
+    >
+      <div class="container">
+        <a href="#" class="navbar-brand fs-4">CV / Portfolio</a>
+        <button
+          class="navbar-toggler navbar-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav ms-auto fs-5">
+            <li class="nav-item">
+              <a href="#skills" class="nav-link">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a href="#work_history" class="nav-link">Work History</a>
+            </li>
+            <li class="nav-item">
+              <a href="#study" class="nav-link">Study</a>
+            </li>
+            <li class="nav-item"><a href="#hoby" class="nav-link">Hoby</a></li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="bg-dark text-light p-5 text-center text-sm-start">
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+            <h1>Welcome</h1>
+            <p class="text-warning fw-bold fs-4 mt-4">
+              Hello, it's my portfolio page. <br />
+              You can find some information abaout me here.
+            </p>
+          </div>
+          <div class="text-center">
+            <img class="img-fluid w-50" src="./assets/image.png" alt="" />
+            <a
+              class="btn btn-warning d-block w-50 m-auto mt-3"
+              data-bs-toggle="offcanvas"
+              href="#offcanvasExample"
+              role="button"
+              aria-controls="offcanvasExample"
+            >
+              <i class="bi bi-chevron-left"></i> Read about me
+            </a>
+
+            <div
+              class="offcanvas offcanvas-start"
+              tabindex="-1"
+              id="offcanvasExample"
+            >
+              <div class="offcanvas-header">
+                <button
+                  type="button"
+                  class="btn-close text-reset"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="offcanvas-body">
+                <div>
+                  <p class="text-dark px-5 fw-bold fs-4">
+                    My name is Andrey and I am 28 years old. I am an active,
+                    motivated person who enjoys learning, my main goal is to
+                    become a developer. I am currently studying programming and
+                    i hope to get a job where i would be a part of a work team
+                    and could be useful an grow as a professional.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="p-5" id="skills">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="row mt-lg-4 justify-content-between align-items-baseline">
+          <div class="col col-md-5">
+            <div class="card bg-dark text-light">
+              <div class="card-header">
+                <div class="h3">TEHNICAL SKILLS</div>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-warning">HTML</li>
+                <li class="list-group-item">CSS</li>
+                <li class="list-group-item list-group-item-warning">
+                  JavaScript
+                </li>
+                <li class="list-group-item">React</li>
+                <li class="list-group-item list-group-item-warning">Redux</li>
+                <li class="list-group-item">Git</li>
+                <li class="list-group-item list-group-item-warning">
+                  Good knowledge of English language
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-5 mt-5">
+            <div class="card bg-dark text-light">
+              <div class="card-header">
+                <div class="h3">PERSONAL SKILLS</div>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-warning">
+                  Collaboration
+                </li>
+                <li class="list-group-item">Ability to learn quickly</li>
+                <li class="list-group-item list-group-item-warning">
+                  Teamwork and communication
+                </li>
+                <li class="list-group-item">Attention to detail</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="p-5 bg-black" id="work_history">
+      <div class="container">
+        <h2 class="text-light">Work History</h2>
+        <table class="table table-responsive text-light mt-5">
+          <thead>
+            <tr>
+              <th scope="col">Period</th>
+              <th scope="col">Place</th>
+              <th scope="col">Position/Description</th>
+              <th scope="col">City</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2014 - 2017</td>
+              <td><h4>InStat</h4></td>
+              <td><h4>Data analyst</h4></td>
+              <td>Chisinau</td>
+            </tr>
+            <tr>
+              <td>2017 - 2020</td>
+              <td><h4>WyScout</h4></td>
+              <td>
+                <h4>Data analyst</h4>
+              </td>
+              <td>Chisinau</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="p-5 bg-light" id="study">
+      <div class="container">
+        <h2 class="text-dark">Study</h2>
+        <table class="table table-responsive text-dark mt-5">
+          <thead>
+            <tr>
+              <th scope="col">Period</th>
+              <th scope="col">University</th>
+              <th scope="col">Faculty</th>
+              <th scope="col">City</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2012 - 2014</td>
+              <td><h4>UTM</h4></td>
+              <td>
+                <h4>
+                  Faculty of Engineering and Management <br />
+                  in Electronics and Telecommunications
+                </h4>
+                <details>
+                  <summary>notice</summary>
+                  <p>not finished</p>
+                </details>
+              </td>
+              <td>Chisinau</td>
+            </tr>
+            <tr>
+              <td>2017 - 2022</td>
+              <td><h4>USEFS</h4></td>
+              <td>
+                <h4>Physical education and sport</h4>
+                <details>
+                  <summary>notice</summary>
+                  <p>will graduate in 2022</p>
+                </details>
+              </td>
+              <td>Chisinau</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="hoby" class="p-5 bg-secondary">
+      <div class="container">
+        <h2 class="text-center text-white">Hoby</h2>
+        <p
+          class="leat text-center text-white mt-5 fs-3"
+          style="width: 50%; margin: 0 auto"
+        >
+          I am a very active person and enjoy sport, playing football and
+          running in my spare time. Now I play for a football team. Also in my
+          free time I like to play intellecutal video games, relax in nature and
+          spend time with friends.
+        </p>
+        <div
+          class="accordion accordion-flush mt-5"
+          style="width: 50%; margin: 0 auto"
+          id="accordion-one"
+        >
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                It may make you smile.
+              </button>
+            </h2>
+            <div
+              id="flush-collapseOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordion-one"
+            >
+              <div class="accordion-body text-center">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/17HPzVwqBVw"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item pt-2">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+                aria-expanded="false"
+                aria-controls="flush-collapseTwo"
+              >
+                Places i would like to visit
+              </button>
+            </h2>
+            <div
+              id="flush-collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingTwo"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                <div class="gallery">
+                  <div class="container">
+                    <div
+                      class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3"
+                    >
+                      <div class="col">
+                        <img src="./assets/1.jpeg" alt="" />
+                      </div>
+                      <div class="col">
+                        <img src="./assets/2.jpeg" alt="" />
+                      </div>
+                      <div class="col">
+                        <img src="./assets/3.jpeg" alt="" />
+                      </div>
+                      <div class="col">
+                        <img src="./assets/4.jpeg" alt="" />
+                      </div>
+                      <div class="col">
+                        <img src="./assets/5.jpeg" alt="" />
+                      </div>
+                      <div class="col">
+                        <img src="./assets/6.jpeg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="p-5">
+      <div class="container">
+        <div class="row gx-5 my-5">
+          <div class="col-md">
+            <h2 class="text-center mb-4">Contact Info</h2>
+            <ul class="list-group list-group-flush lead ">
+              <li class="list-group-item">
+                <span class="fw-bold"
+                  >Tel:
+                  <a class="text-warning" href="tel:+37360073223"
+                    >37360073223</a
+                  ></span
+                >
+              </li>
+              <li class="list-group-item">
+                <span class="fw-bold"
+                  >Email:
+                  <a class="text-warning" href="#"
+                    >batare1dich@gmail.com</a
+                  ></span
+                >
+              </li>
+              <li class="list-group-item">
+                >Address:
+                <address>
+                  <span class="fw-bold">Hasdeu 22/ Stefan-Voda/ Moldova</span>
+                </address>
+              </li>
+              <li class="list-group-item">
+                <span class="fw-bold"
+                  >Website link:
+                  <a class="text-warning" href="#"
+                    >http://i-dont-have-any.com</a
+                  ></span
+                >
+              </li>
+              <li class="list-group-item">
+                <span class="fw-bold fs-1"
+                  ><a href="#"><i class="bi bi-linkedin text-secondary"></i></a
+                ></span>
+              </li>
+              <li class="list-group-item">
+                <span class="fw-bold fs-1"
+                  ><a href="#"><i class="bi bi-facebook text-secondary"></i></a
+                ></span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md">
+            <h2 class="text-center mb-4">Leave your contact</h2>
+            <form id="registrationForm" action="#registrationForm">
+              <label for="exampleInputText1" class="form-label"
+                >Full Name</label
+              >
+              <div class="input-group mb-3">
+                <span class="input-group-text"
+                  ><i class="bi bi-person-fill"></i
+                ></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputText1"
+                  required
+                />
+              </div>
+              <label for="exampleInputEmail1" class="form-label"
+                >Email address</label
+              >
+              <div class="input-group mb-3">
+                <span class="input-group-text"
+                  ><i class="bi bi-envelope-fill"></i
+                ></span>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  required
+                />
+              </div>
+              <label for="phone" class="form-label">Phone</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text"
+                  ><i class="bi bi-telephone-fill"></i
+                ></span>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                />
+              </div>
+              <label for="exampleFormControlTextarea1" class="form-label"
+                >Message</label
+              >
+              <div class="input-group mb-3">
+                <span class="input-group-text"
+                  ><i class="bi bi-chat-right-dots-fill"></i
+                ></span>
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-warning" onclick="Toasty()">
+                Submit
+              </button>
+            </form>
+
+            <div
+              class="toast bg-light text-dark fade"
+              id="EpicToast"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              style="position: absolute; right: 20px"
+            >
+              <div class="toast-header">
+                <i class="bi bi-check-circle-fill"></i>
+                <strong class="me-auto ms-2">Thanks</strong>
+                <button
+                  type="button"
+                  class="ml-2 mb-1 btn-close"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="toast-body bg-warning">Your contact was sent</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="p-5 bg-warning text-dark text-center position-relative">
+      <div class="container">
+        <p class="lead">Copyright &copy; 2021 CV / Portfolio</p>
+        <a href="" class="position-absolute bottom-0 end-0 p-5">
+          <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var option = {
+        animation: true,
+        delay: 3000,
+      };
+      function Toasty() {
+        var toastHTMLElement = document.getElementById("EpicToast");
+        var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+        var name = document.querySelector('#exampleInputText1').checkValidity()
+        var mail = document.querySelector('#exampleInputEmail1').checkValidity()
+        var tel = document.querySelector('#phone').value
+        if(name && mail && tel)
+        toastElement.show();
+      }
+    </script>
+  </body>
+</html>
