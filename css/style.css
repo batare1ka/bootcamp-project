@@ -180,6 +180,9 @@ summary{
 summary::marker {
   content: '';
 }
+details[open] summary ~ * {
+  animation: sweep .5s ease-in-out;
+}
 iframe {
   border: none;
   border-radius: 10px;
@@ -316,5 +319,9 @@ transform: translateX(0%);
   100%{
     transform: translateX(-100%);
   }
+}
+@keyframes sweep {
+  0%    {opacity: 0; margin-left: -10px}
+  100%  {opacity: 1; margin-left: 0px}
 }
 /* end animations */
