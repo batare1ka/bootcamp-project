@@ -11,7 +11,7 @@ body {
   font-size: 20px;
   line-height: 140%;
   color: #1f1e1e;
-  background-color: violet;
+  background-color: rgb(255, 255, 255);
 }
 /* header */
 header {
@@ -22,7 +22,8 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: turquoise;
+  background: rgb(36,34,0);
+  background: linear-gradient(135deg, rgba(36,34,0,0.8883928571428571) 0%, rgba(178,195,37,0.8575805322128851) 53%, rgba(0,212,255,1) 100%);
   padding: 20px 50px;
 }
 header > h1 > a{
@@ -59,13 +60,16 @@ nav li {
 main {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  min-height: 92.2vh;
 }
 .left__section {
   max-width: 300px;
   padding: 30px;
   background-color: yellowgreen;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.1);
+  clip-path: polygon(0 0, 100% 0, 88% 93%, 0 100%);
+  animation: bg-change 6s ease-in forwards infinite alternate-reverse;
+
 }
 #about {
   display: flex;
@@ -87,10 +91,14 @@ main {
   outline-offset: 5px;
 }
 .right__section {
+  background-image: url(../public/right-bg.png);
+  background-position: 200px 0;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items:flex-start;
+  background-color: rgba(149, 245, 162, 0.63);
+  clip-path: polygon(100% 0, 100% 38%, 82% 100%, 0 100%, 0 0);
 }
 .right__section > section {
   padding: 30px 0 0 40px;
@@ -204,7 +212,7 @@ iframe {
   display: flex;
   flex-direction: column;
   box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.19);
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .contact__box > h3 {
   position: relative;
@@ -323,5 +331,23 @@ transform: translateX(0%);
 @keyframes sweep {
   0%    {opacity: 0; margin-left: -10px}
   100%  {opacity: 1; margin-left: 0px}
+}
+
+@keyframes bg-change {
+  0% {
+    background: #ee6055;
+  }
+  25% {
+    background: #60d394;
+  }
+  50% {
+    background: #aaf683;
+  }
+  75% {
+    background: #ffd97d;
+  }
+  100% {
+    background: #ff9b85;
+  }
 }
 /* end animations */
