@@ -9,5 +9,8 @@ class ContactController extends Controller
    public function showContact() {
 return view('contact.contact');
    }
+   public function sendContact(){
+        return redirect('contact');
+   }
    
 }
