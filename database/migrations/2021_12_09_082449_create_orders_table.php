@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('payment_id')->unique();
             $table->foreign('payment_id')->references('id')->on('payments')->restrictOnDelete()->cascadeOnUpdate();
             $table->unsignedDecimal('totat_price', 10, 2);
-            $table->timestamp('order_date');
+            $table->dateTime('order_date')->useCurrent();
         });
     }
 

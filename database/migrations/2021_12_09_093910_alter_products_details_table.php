@@ -27,6 +27,12 @@ class AlterProductsDetailsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('products_details', function (Blueprint $table) {
+            $table->renameColumn('composition', 'fabric');
+            $table->dropColumn('prod_features');
+            $table->unsignedSmallInteger('size');
+            $table->string('color', 30);
+            $table->dateTime('created_at');
+        });
     }
 }

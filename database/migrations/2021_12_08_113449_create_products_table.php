@@ -16,10 +16,10 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->nullOnDelete()->cascadeOnUpdate();
-            $table->char('name', 100)->unique()->default('');
+            $table->string('name', 100)->unique()->default('');
             $table->unsignedDecimal('price', 10, 2);
-            $table->char('img_large_url', 255)->nullable();
-            $table->char('img_small_url', 255)->nullable();
+            $table->string('img_large_url', 255)->nullable();
+            $table->string('img_small_url', 255)->nullable();
             $table->index(['name', 'price']);
            
         });

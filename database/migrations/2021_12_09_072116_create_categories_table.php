@@ -15,12 +15,12 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         DB::statement("
-        CREATE TABLE categories (
-            `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-            `name` VARCHAR(100) NOT NULL,
-            `img_url` VARCHAR(255) DEFAULT NULL,
-            PRIMARY KEY (`id`),
-            UNIQUE KEY `catergory_UN` (`name`)
+            CREATE TABLE categories (
+               `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+               `name` VARCHAR(100) NOT NULL,
+               `img_url` VARCHAR(255) DEFAULT NULL,
+                PRIMARY KEY (`id`),
+                UNIQUE KEY `catergory_UN` (`name`)
             ) ENGINE=InnoDB;
         ");
     }

@@ -28,6 +28,11 @@ class AlterCustomersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('customers', function (Blueprint $table) {
+            $table->string('postal_code', 50);
+            $table->string('street', 30)->nullable()->change();
+            $table->string('email', 50)->change();
+            $table->dropColumn('zip_code');
+        });
     }
 }
