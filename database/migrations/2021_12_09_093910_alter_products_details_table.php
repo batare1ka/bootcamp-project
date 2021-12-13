@@ -15,7 +15,7 @@ class AlterProductsDetailsTable extends Migration
     {
         Schema::table('products_details', function (Blueprint $table) {
             $table->renameColumn('fabric', 'composition');
-            $table->tinyText('prod_features')->default('')->after('fabric');
+            $table->tinyText('features')->default('')->after('fabric');
             $table->dropColumn(['size', 'color', 'created_at']);
         });
         }
@@ -29,10 +29,10 @@ class AlterProductsDetailsTable extends Migration
     {
         Schema::table('products_details', function (Blueprint $table) {
             $table->renameColumn('composition', 'fabric');
-            $table->dropColumn('prod_features');
+            $table->dropColumn('features');
             $table->unsignedSmallInteger('size');
             $table->string('color', 30);
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->useCurrent();
         });
     }
 }

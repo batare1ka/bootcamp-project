@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateOrdersProductsTable extends Migration
+class CreateOrderProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateOrdersProductsTable extends Migration
     public function up()
     {
         DB::statement("
-           CREATE TABLE orders_products (
+           CREATE TABLE order_product (
               `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
               `product_id` INT(10) UNSIGNED NOT NULL,
               `order_id` INT(10) UNSIGNED NOT NULL,
@@ -41,7 +41,7 @@ class CreateOrdersProductsTable extends Migration
     public function down()
     {
         DB::statement("
-        DROP TABLE `orders_products`;
+        DROP TABLE `order_product`;
         ");
     }
 }

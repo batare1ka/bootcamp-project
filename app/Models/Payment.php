@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Flight extends Model
+class Payment extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'destination',
-        'departure'
-    ];
+
+    public function orders(){
+        return $this->hasOne(Order::class);
+    }
 }
