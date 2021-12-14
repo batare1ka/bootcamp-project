@@ -9,8 +9,19 @@ class Product extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
 
-    public function productstock(){
+    protected $fillable = [
+        'brand_id',
+        'name',
+        'price',
+        'img_large_url',
+        'img_small_url'
+        
+    ];
+
+
+    public function stocks(){
         return $this->hasMany(Stock::class);
     }
 
@@ -19,15 +30,15 @@ class Product extends Model
         return $this->belongsTo(Brands::class);
     }
 
-    public function details(){
-        return $this->hasOne(ProductsDetail::class)
+    public function ProductsDetail(){
+        return $this->hasOne(ProductsDetail::class);
     }
 
     public function categories(){
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
     }
 
-    public function orderproduct(){
+    public function orderProducts(){
         return $this->hasMany(OrderProduct::class);
     }
 }

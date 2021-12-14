@@ -15,7 +15,7 @@ class CreateOrderProductTable extends Migration
     public function up()
     {
         DB::statement("
-           CREATE TABLE order_product (
+           CREATE TABLE order_products (
               `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
               `product_id` INT(10) UNSIGNED NOT NULL,
               `order_id` INT(10) UNSIGNED NOT NULL,
@@ -41,7 +41,7 @@ class CreateOrderProductTable extends Migration
     public function down()
     {
         DB::statement("
-        DROP TABLE `order_product`;
+        DROP TABLE `order_products`;
         ");
     }
 }

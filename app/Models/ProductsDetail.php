@@ -9,6 +9,17 @@ class ProductsDetail extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'product_id',
+        'weight',
+        'composition',
+        'description',
+        'features'
+        
+    ];
+
     public function product(){
         return $this->belongsTo(Product::class);
     }
