@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +19,11 @@ use App\Http\Controllers\ContactController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/contact', [ContactController:: class, 'showContact']);
+Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/product', [ProductController::class, 'index'])->name('product');
 
