@@ -6,42 +6,52 @@
   </section>
   <section id="blog-container" class="container pt-5">
     <div class="row">
-      <div class="post col-lg-6 col-md-6 col-12">
+      @forelse ($articles as $article)
+      <div class="post col-lg-3 col-md-6 col-12">
+        <a href="{{ route('article', ['id' => $article->id]) }}">
         <div class="post-img">
-          <img class="image-fluid w-100 rounded" src="{{ URL('assets/images/blog/1.jpg') }}" alt="" />
+          <img class="image-fluid w-100 rounded" src="{{  \Illuminate\Support\Facades\Storage::url($article->image) }}" />
         </div>
         <h3 class="text-center fw-normal pt-3">
-          Tips for Working Mothers to Manage Kids Dressing with Work Schedule
+          {{ $article['title'] }}
         </h3>
-        <p class="text-center">on Nov 2, 2021 0 Comnents</p>
+      </a>
+        <p class="text-center fs-6">on Nov 2, 2021 0 Comnents</p>
       </div>
-      <div class="post col-lg-6 col-md-6 col-12">
-          <div class="post-img">
-            <img class="image-fluid w-100 rounded" src="{{ URL('assets/images/blog/2.jpg') }}" alt="" />
+      @empty
+        {{ 'No article' }}
+      @endforelse
+      <div >
+
+        <form method="GET" action="/blog" class="row row-col-3 m-4">
+          <div class="col">
+            <select class="form-select" name="sort">
+              <option value="DESC" {{ $filter['sort'] =='DESC  '? "selected": '' }}>Latest</option>
+              <option value="ASC" {{ $filter['sort'] =='ASC'? "selected": ''}}>Newest</option>
+            </select>
           </div>
-          <h3 class="text-center fw-normal pt-3">
-              How to teach children to dress themselves: The Ultimate Guide
-          </h3>
-          <p class="text-center">on Nov 15, 2021 0 Comnents</p>
-        </div>
-        <div class="post col-lg-6 col-md-6 col-12">
-          <div class="post-img">
-            <img class="image-fluid w-100 rounded" src="{{ URL('assets/images/blog/3.jpg') }}" alt="" />
+          <div class="col">
+            <select class="form-select" name="category">
+              @foreach ($categories as $category )
+              <option value="{{ $category->id }}" {{ (int)$filter['category'] === $category->id?
+               "selected": '' }}>{{ $category->name }}</option>
+              @endforeach
+             
+             
+            </select>
           </div>
-          <h3 class="text-center fw-normal pt-3">
-              Mistakes to avoid while shopping for kids clothing online in India
-          </h3>
-          <p class="text-center">on Dec 21, 2021 0 Comnents</p>
-        </div>
-        <div class="post col-lg-6 col-md-6 col-12">
-          <div class="post-img">
-            <img class="image-fluid w-100 rounded" src="{{ URL('assets/images/blog/4.jpg') }}" alt="" />
+          <div class="col">
+            <button class="btn btn-primary">Apply sorting</button>
           </div>
-          <h3 class="text-center fw-normal pt-3">
-              How to Store & Organize Kid's Clothing – Ultimate Guide
-          </h3>
-          <p class="text-center">on Jan 12, 2022 0 Comnents</p>
-        </div>
+
+        </form>
+
+      </div>
+      <div class="row">
+        {{ $articles->links() }}
+      </div>
+      
+
         <div class="col-lg-12 col-md-12 col-12 py-5">
           <div class="post-img">
             <img class="image-fluid w-100 rounded" src="{{ URL('assets/images/blog/banner.jpg') }}" alt="" />

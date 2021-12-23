@@ -19,9 +19,11 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('blog/article/{id}', [BlogController::class, 'showArticle'])->name('article')
+->where('id', '\b\d{0,10}\b');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');

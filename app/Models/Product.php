@@ -30,7 +30,7 @@ class Product extends Model
         return $this->belongsTo(Brands::class);
     }
 
-    public function ProductsDetail(){
+    public function productsDetail(){
         return $this->hasOne(ProductsDetail::class);
     }
 
