@@ -27,5 +27,5 @@ Route::get('blog/article/{id}', [BlogController::class, 'showArticle'])->name('a
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::get('/product', [ProductController::class, 'index'])->name('product');
+Route::get('/product/{id}', [ProductController::class, 'index'])->name('product')->where('id', '\b\d{0,10}\b');
 

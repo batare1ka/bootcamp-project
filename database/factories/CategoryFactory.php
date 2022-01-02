@@ -15,7 +15,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'img_url' =>$this->faker->image('storage/app/public'),
+            'img_url' =>$this->faker->word(),
         ];
     }
 }

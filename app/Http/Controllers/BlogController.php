@@ -8,13 +8,14 @@ use App\Models\BlogCategory;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class BlogController extends Controller
 {
 
     public function index()
     {
-        // $articles = Article::orderBy('created_at', 'DESC')->get()->all();
+        // $articles = Article::orderBy('created_at', 'DESC')->all();
         // $articlesOfCurrentYear = Article::select([
         //     'id',
         //     'title',
@@ -106,25 +107,45 @@ class BlogController extends Controller
         //     ->get();
 
         // return $authorMostArt;
+        // return Article::whereHas('comments', fn($query) => $query->where('id', 1));
 
         $request = request()->all();
         $categories = BlogCategory::all();
-
-        $articles = Article::orderBy('created_at', $request['sort'] ?? 'DESC')->simplePaginate(5);
-        $articles->appends(['sort' => $request['sort'] ?? 'DESC']);
+    
+        // if (isset($request['category']) && $request['category'] != '0') {
+        //     $articles = Article::where('category_id', $request['category'])->orderBy('created_at', $request['sort'] ?? 'DESC')->withCount('comments')->paginate(5)->withQueryString();
+        // }else{
+        //     $articles = Article::orderBy('created_at', $request['sort'] ?? 'DESC')->withCount('comments')->paginate(5)->withQueryString();
+        //     }
+           if (isset($request['category']) && $request['category'] != '0') {
+            $articles = Article::where('category_id', $request['category'])
+            ->orderBy(isset($request['sort'])&&$request['sort']==="MOST"?'comments_count':'created_at',
+             isset($request['sort'])&&$request['sort']==="MOST"? 'DESC' :
+              (isset($request['sort'])&&$request['sort']==="ASC"?"ASC":'DESC'))
+              ->withCount('comments')
+              ->paginate(5)
+              ->withQueryString();
+        }else{
+            $articles = Article::orderBy(isset($request['sort'])&&$request['sort']==="MOST"?'comments_count':'created_at',
+             isset($request['sort'])&&$request['sort']==="MOST"? 'DESC' : 
+             (isset($request['sort'])&&$request['sort']==="ASC"?"ASC":'DESC'))
+             ->withCount('comments')
+             ->paginate(5)
+             ->withQueryString();
+            }
 
         return view('blog.blog', [
             'articles' => $articles,
             'categories' => $categories,
             'filter' => [
                 'sort' => $request['sort'] ?? 'ASC',
-                'category' => $request['category'] ?? $categories->first()->id
+                'category' => $request['category'] ?? '0'
             ]
         ]);
     }
     public function showArticle($id)
     {
-        $article = Article::find($id);
+        $article = Article::with('comments')->find($id);
 
         return view('blog.article', ['article' => $article]);
     }

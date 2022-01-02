@@ -18,8 +18,8 @@ class ProductFactory extends Factory
             'brand_id' => Brand::factory(),
             'name' => $this->faker->unique()->word(),
             'price' => $this->faker->numberBetween(1,50),
-            'img_large_url' => $this->faker->image('storage/app/public'),
-            'img_small_url'  => $this->faker->image('storage/app/public')
+            'img_large_url' => $this->faker->image('storage/app/public', $width = 600, $height = 388, $category = null, $fullPath = false),
+            'img_small_url'  => $this->faker->word()
         ];
     }
 }

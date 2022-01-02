@@ -42,19 +42,19 @@
 
   <div class="about__banner my-5 py-5">
     <div class="about__banner-wrapper container-lg">
-      <div class="abour__banner-item">
+      <div class="about__banner-item">
         <span>4500</span>
         <p>Happy Clients</p>
       </div>
-      <div class="abour__banner-item">
+      <div class="about__banner-item">
         <span>3000</span>
         <p>Total Brand</p>
       </div>
-      <div class="abour__banner-item">
+      <div class="about__banner-item">
         <span>5000</span>
         <p>Total Selling</p>
       </div>
-      <div class="abour__banner-item">
+      <div class="about__banner-item">
         <span>3500</span>
         <p>Total members</p>
       </div>
