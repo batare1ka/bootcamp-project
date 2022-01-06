@@ -8,7 +8,7 @@ use App\Models\Brand;
 
 class ShopController extends Controller
 {
-    public function index(){
+    public function index(Request $req){
         $request = request()->all();
         if(isset($request['brand']) && $request['brand'] != '0'){
             $products = Product::where('brand_id', $request['brand'])->paginate(12)->withQueryString();
@@ -24,6 +24,10 @@ class ShopController extends Controller
             
         }
         $brands = Brand::take(10)->get();
+        if($req->ajax()){
+            $view = view('components.prod-item', ['products' => $products])->render();
+           return response()->json(['html'=> $view]);
+        }
 
         
         return view('shop.shop',

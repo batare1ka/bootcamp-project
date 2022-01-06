@@ -14,3 +14,14 @@
     background-color: coral;
     color: white;
 }
+.ajax-load{
+    text-align: center;
+    display: none;
+    transition: 1s ease;
+}
+
+.preloader {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;  
+}
