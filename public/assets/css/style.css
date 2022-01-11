@@ -597,7 +597,7 @@ footer .copyright i {
 }
 
 #contact form input {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 #contact form button {
@@ -613,7 +613,18 @@ footer .copyright i {
   opacity: 1;
   padding: 13px 34px;
 }
-
+#contact label{
+  font-size: 1.5rem;
+}
+#contact .select select {
+  font-size: 1.2rem;
+}
+#contact .error{
+  color: red;
+  font-size: 0.8rem;
+  display: block;
+  margin: -4px auto -7px;
+}
 /* About Page */
 #history hr {
   width: 25%;

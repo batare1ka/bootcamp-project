@@ -113,10 +113,10 @@
       </div>
     </div>
     <div class="row mx-auto col-md-9 col-sm-8" id="product-data">
-      
-      <x-prod-item :products="$products"/>
-     
-      <div class="ajax-load text center" >
+
+      <x-prod-item :products="$products" />
+
+      <div class="ajax-load text center">
         <img class="preloader" src="{{   \Illuminate\Support\Facades\Storage::url("preloader.gif") }}" alt="">
       </div>
     </div>
@@ -124,31 +124,51 @@
 </section>
 <script>
   function loadMoreData(page){
-    $.ajax({
-      url: window.location.search ? window.location.search + '&page=' + page : '?page=' + page,
-      type: 'get',
-      beforeSend: function(){
-        $(".ajax-load").show();
-      }
-    })
-    .done(function(data){
-      if(data.html == " "){
-        $('.ajax-load').html("No more records found");
-        return;
-      }
-      $(".ajax-load").hide();
-      $(data.html).insertBefore('.ajax-load');
-    }).fail(function(jqXHR, ajaxOptions, thrownError){
-      alert("Server not responding...")
-    });
+      
+  var xhttp = new XMLHttpRequest();
+  
+   xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText).html;
+        if(data == ''){
+          let div = document.createElement('div');
+          div.classList.add("no-more");
+          div.style.textAlign = "center";
+          div.innerHTML = "No more records found";
+
+          document.querySelector('#product-data').insertBefore(div, document.querySelector('.ajax-load'));
+          setInterval(() => {
+            document.querySelector('.no-more').remove();
+          }, 2000);
+        }else {
+          document.querySelector('.ajax-load').insertAdjacentHTML( 'beforebegin', data );
+        }
+        setTimeout(() => {
+          document.querySelector('.ajax-load').style.display = 'none';
+        }, 500);
+        
+        
+        
+        }
+     };
+          xhttp.onprogress = function(){
+            document.querySelector('.ajax-load').style.display = 'block';
+            }
+
+          xhttp.open("GET", window.location.search ? window.location.search + '&page=' + page : '?page=' + page, true);
+          xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+          xhttp.send();
+
+
+ }
+ let page = 1;
+ document.addEventListener('scroll', function(e) {
+  if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight){
+    page++;
+    loadMoreData(page);
+
   }
-  let page = 1;
-  $(window).scroll(function(){
-    if($(window).scrollTop() + $(window).height() >= $(document).height()){
-      page++;
-      loadMoreData(page);
-    }
-  });
+ });
   (function(){
 
   let check = document.querySelectorAll(".brand");
