@@ -12,12 +12,8 @@ class ContactController extends Controller
         return view('contact.contact');
     }
     public function send(ContactUsRequest $request){
-        $callback = function(string $test){
-            return "{$test} input";
-        };
-        
+
         $data = $request->validated();
-         \Log::debug($callback('test'), $data);
 
          \Mail::send(
              "emails.contactUs",
@@ -31,9 +27,10 @@ class ContactController extends Controller
 
              ], 
              function (Message $message) use ($data){
-                 $message->subject('Contact Us requested from' . $data['email']);
-                 $message->to('tech@ballon.app');
-                 $message->from('no-reply@ballon.app', 'ballon mailer');
+                 $message->subject('Contact Us requested from ' . $data['email']);
+                 $message->from($data['email'], $data['name']);
+                 $message->to('e-commerce@clokids.app');
+                 
          });
        return  redirect()->route('contact')->withInput($data);
     }
