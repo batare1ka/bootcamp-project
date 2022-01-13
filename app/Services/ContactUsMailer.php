@@ -30,12 +30,7 @@ class ContactUsMailer{
                 $message->subject('Contact Us requested from ' . $data['email']);
                 $message->from($data['email'], $data['name']);
                 $message->to('e-commerce@clokids.app');
-                
-        });
+            });
         $this->logger->info("Contact Us mail send to e-commerce@clokids.app");
     }
-    
-        
-    
-
 }
