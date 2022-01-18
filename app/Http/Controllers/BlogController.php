@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\BlogCategory;
 use App\Models\User;
+use App\Services\ModelLogger;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
@@ -144,14 +145,10 @@ class BlogController extends Controller
             ]
         ]);
     }
-    public function showArticle($id, Request $request, LoggerInterface $logger)
+    public function showArticle($id, Request $request, ModelLogger $logger)
     {
         $article = Article::with('comments')->find($id);
-        $user = $request->user();
-        $userRepresentation = $user ? "User with id {$user->id}": "Unknown User";
-        $logger->info($userRepresentation . " accesed " . "article with id {$id}",
-         ['id' => $id, 'title' => $article->title]
-        );
+        $logger->logModel($request->user, $article);
 
         return view('blog.article', ['article' => $article]);
     }
