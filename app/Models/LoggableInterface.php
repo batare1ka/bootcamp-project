@@ -13,7 +13,7 @@ interface LoggableInterface
     /**
      * Get Loggable object data for log context.
      * 
-     * @return arrray
+     * @return array
      */
 
     public function getData(): array;
