@@ -2,12 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\UserRepresentationTrait;
 use Closure;
 use Psr\Log\LoggerInterface;
 use Illuminate\Http\Request;
 
 class LogActivityMiddleware
 {
+    use UserRepresentationTrait;
     private LoggerInterface $logger;
     /**
      * @param LoggerInterface $logger
@@ -26,9 +28,8 @@ class LogActivityMiddleware
         /**
          * @var User $user
          */
-        $user = $request->getUser();
         $this->logger->debug(
-            $this->identifyUserRepresentation($user) . "made a request to " . ($type ?? 'unknown page'),
+            $this->identifyUserRepresentation($request->user()) . "made a request to " . ($type ?? 'unknown page'),
             ['data placeholder']
         );
         return $next($request);
