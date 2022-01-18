@@ -5,12 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\BlogCategory;
-use App\Models\User;
 use App\Services\ModelLogger;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Arr;
-use Psr\Log\LoggerInterface;
 
 class BlogController extends Controller
 {

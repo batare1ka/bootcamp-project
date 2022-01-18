@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends Model implements LoggableInterface
 {
     use HasFactory;
 
@@ -40,5 +40,18 @@ class Product extends Model
 
     public function orderProducts(){
         return $this->hasMany(OrderProduct::class);
+    }
+    public function getStringRepresentation(): string
+    {
+        return "Product with id {$this->id}";
+    }
+    public function getData(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'price' => $this->price,
+            'brand_id' => $this->brand_id
+        ];
     }
 }

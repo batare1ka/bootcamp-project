@@ -8,8 +8,6 @@ interface LoggableInterface
      * @return string
      */
     public function getStringRepresentation(): string;
-
-
     /**
      * Get Loggable object data for log context.
      * 
