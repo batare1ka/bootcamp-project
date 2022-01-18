@@ -143,7 +143,7 @@ class BlogController extends Controller
     public function showArticle($id, Request $request, ModelLogger $logger)
     {
         $article = Article::with('comments')->find($id);
-        $logger->logModel($request->user, $article);
+        $logger->logModel($request->user(), $article);
 
         return view('blog.article', ['article' => $article]);
     }

@@ -12,7 +12,7 @@ class ProductController extends Controller
         $products = Product::with('brand', 'categories', 'productsDetail')->get();
         $product = $products->find($id);
         $randomProducts = $products->random(4);
-        $logger->logModel($request->user, $product);
+        $logger->logModel($request->user(), $product);
         return view('product.product',
          ['product' => $product,
         'randomProducts' => $randomProducts
