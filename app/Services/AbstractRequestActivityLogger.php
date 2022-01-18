@@ -15,7 +15,7 @@ abstract class AbstractRequestActivityLogger implements RequestActivityLoggerInt
     public function logRequest(Request $request, string $type): void
     {
         $this->logger->debug(
-            $this->identifyUserRepresentation($request->user()) . "made a request to " . $type,
+            $this->identifyUserRepresentation($request->user()) . " made a request to " . $type,
             $this->collectRequestData($request)
         );
     }
