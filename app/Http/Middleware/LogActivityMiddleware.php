@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 class LogActivityMiddleware
 {
     private DummyRequestActivityLogger $logger;
-    private DebugRequestActivityLogger $debug_logger;
-    private ProductionRequestActivityLogger $production_logger;
     /**
      * @param DummyRequestActivityLogger $logger
      */
@@ -30,8 +28,7 @@ class LogActivityMiddleware
     public function handle($request, Closure $next, ?string $type = null)
     {
         $this->logger->logRequest($request, $type ?? 'unknown page');
-        $this->debug_logger->logRequest($request, $type ?? 'unknown page');
-        $this->production_logger->logRequest($request, $type ?? 'unknown page');
+        
         return $next($request);
     }
 }
