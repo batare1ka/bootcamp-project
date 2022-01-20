@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class LogActivityMiddleware
 {
-    private DummyRequestActivityLogger $logger;
+    private RequestActivityLoggerInterface $logger;
     /**
      * @param RequestActivityLoggerInterface $logger
      */
