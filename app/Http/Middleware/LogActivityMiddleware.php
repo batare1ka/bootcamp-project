@@ -2,9 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\DebugRequestActivityLogger;
 use App\Services\DummyRequestActivityLogger;
-use App\Services\ProductionRequestActivityLogger;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -14,11 +12,10 @@ class LogActivityMiddleware
     /**
      * @param DummyRequestActivityLogger $logger
      */
-    public function __construct(DummyRequestActivityLogger $logger, DebugRequestActivityLogger $debug_logger, ProductionRequestActivityLogger $production_logger)
+    public function __construct(DummyRequestActivityLogger $logger)
     {
         $this->logger = $logger;
-        $this->debug_logger = $debug_logger;
-        $this->production_logger =$production_logger;
+   
     }
     /**
      * @param Request $request
