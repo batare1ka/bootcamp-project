@@ -11,8 +11,11 @@ class DebugRequestActivityLogger extends AbstractRequestActivityLogger
     {
         return [
             "url" => $request->url(),
+            "path" => $request->path(),
             "method" => $request->method(),
-            "time: " => Carbon::now()
+            "time: " => Carbon::now(),
+            "acceptable_types" => $request->getAcceptableContentTypes(),
+            "ip" => $request->ip(),
 
 
         ];

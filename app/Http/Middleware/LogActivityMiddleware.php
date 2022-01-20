@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\DummyRequestActivityLogger;
 use App\Services\RequestActivityLoggerInterface;
 use Closure;
 use Illuminate\Http\Request;
