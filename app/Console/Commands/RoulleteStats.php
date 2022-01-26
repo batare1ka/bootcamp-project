@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\Cache\Repository as CacheRepo;
 
 use Illuminate\Console\Command;
@@ -42,30 +41,23 @@ class RoulleteStats extends Command
      * @return int
      */
     public function handle()
-    {
-        if($this->register->get('bool', false)){
-            $this->register->set('stats', [...$this->register->get('stats',[]), $this->register->get('The Computer', '-'), $this->register->get('You', '-'), $this->register->get('barrels', 0), Carbon::now()]);
-        }
-        $this->register->set('bool', false);
-        $compWins = 0;
+    {   $compWins = 0;
         $playerWins = 0;
         $arr = $this->register->get('stats', []);
         $length = count($arr) ?? 0;
         for($i = 0; $i < $length; $i++){
-            if($i%2==0 && $arr[$i]=="Won"){
+            if($i%2==1 && $arr[$i]=="Won"){
                 $compWins++;
-            }else  if($i%2==1 && $arr[$i]=="Won"){
+            }else  if($i%2==1 && $arr[$i]=="Lost"){
                 $playerWins++;
             }
         }
-        $tab = array_chunk($arr,4);
+        $tab = array_chunk($arr,5);
         $totalGames = count($tab) ?? 0;
-       
-       
         $this->info('List of Games');
-        $this->table(['Computer', 'Player', "barrels", "time"], $tab);
+        $this->table(['Bullet', 'Computer', "Player", "Laps", "Time"], $tab);
         $this->info('Overall Statistic');
-        $this->table(["Computer' Total", "Player's total", "Total games"], [[$compWins, $playerWins, $totalGames]]);
+        $this->table(["Computer' Wins", "Player's Wins", "Total Games"], [[$compWins, $playerWins, $totalGames]]);
        
 
     }

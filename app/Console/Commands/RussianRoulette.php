@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Cache\Repository as CacheRepo;
 
@@ -12,7 +13,7 @@ class RussianRoulette extends Command
      *
      * @var string
      */
-    protected $signature = 'play:roullete';
+    protected $signature = 'play:roulette';
 
     /**
      * The console command description.
@@ -27,13 +28,25 @@ class RussianRoulette extends Command
      * @return void
      */
     private CacheRepo $register;
-    private $players = array('The Computer' => 0, 'You' => 0);
-    private $barrels = 6;
+    private $players = ['The Computer' => 0, 'You' => 0];
+    private $barrels = 5;
     private $bullet = 0;
-    private $parties = 0;
-    private $stats;
+    private $laps = 0;
+    private $computer;
+    private $player;
+    private $bool;
 
-
+    public function register_stats(){
+        if($this->bool){
+            $this->register->set('stats', [...$this->register->get('stats',[]), 
+            $this->laps,
+            $this->computer,
+            $this->player, 
+             $this->bullet,
+              Carbon::now()], 60*60*24);
+        }
+        $this->bool = false;
+    }
 
     public function __construct(CacheRepo $register)
     {
@@ -48,7 +61,7 @@ class RussianRoulette extends Command
      */
     private function status()
     {
-        $this->info("\n\t\tParties played {$this->parties}.\n\t\tBarrels {$this->barrels}.");
+        $this->info("\n\t\tLaps played {$this->laps}.\n\t\tBarrels {$this->barrels}.");
     }
     private function play()
     {
@@ -58,17 +71,40 @@ class RussianRoulette extends Command
         $this->bullet = random_int(1, $this->barrels);
         while (true) {
 
-            $this->parties++;
+            $this->laps++;
 
-            $this->info("\n\n\t\tYour turn.");
+            $this->info("\n\n\t\t
+                 __        __     ___       __        
+            \ / /  \ |  | |__)     |  |  | |__) |\ |  
+             |  \__/ \__/ |  \     |  \__/ |  \ | \| .
+                                                      ");
 
             sleep(2);
 
             $this->players['You'] = random_int(1, $this->bullet);
 
             if ($this->players['You'] === $this->bullet) {
+                system('clear');
+                $this->info("\n\n\t\t
+                 __   __   __             /  /  /
+                |__) /  \ /  \  |\/|     /  /  / 
+                |__) \__/ \__/  |  |    .  .  .  
+                                                 \n\t\t");
 
-                $this->info("\n\n\t\tBOOM !!!\n\t\tYou have lost the game !!!\n\t\tThe Computer won !!!\n\t");
+                sleep(2);
+                system('clear');
+                $this->info("\n\t\t
+                     __           __     ___  __  
+                \ / /  \ |  |    |  \ | |__  |  \ 
+                 |  \__/ \__/    |__/ | |___ |__/ 
+                                                  \n");
+                sleep(2);
+                system('clear');
+                $this->info("\n\t\t
+                 __   __         __       ___  ___  __           __       
+                /  ` /  \  |\/| |__) |  |  |  |__  |__)    |  | /  \ |\ | 
+                \__, \__/  |  | |    \__/  |  |___ |  \    |/\| \__/ | \| 
+                                                                          ");
                 $this->status();
                 $this->info("\n\t\t
                 ´´´´´´´´´´´´´´´´´´´ ¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶´´´´´´´´´´´´´´´´´´´`
@@ -105,23 +141,58 @@ class RussianRoulette extends Command
                 ´´´´´´¶¶´´¶¶´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´¶¶´´¶¶´´´´´´
                 ´´´´´´´¶¶¶¶´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´¶¶¶¶´´´´´´´"
             );
-            $this->register->set('The Computer', 'Won');
-            $this->register->set('You', 'Lost');
+             $this->computer = "Won";
+             $this->player = "Lost";
                 break;
             } else {
 
-                $this->info("\n\n\t\tIs empty !!!\n");
+                $this->info("\n\n\t\t
+                   __      ___        __  ___          /  /  /
+                | /__`    |__   |\/| |__)  |  \ /     /  /  / 
+                | .__/    |___  |  | |     |   |     .  .  .  
+                                                              \n");
             }
 
             sleep(2);
             system('clear');
 
-            $this->info("\n\n\t\tComputer's turn.");
+            $this->info("\n\n\t\t
+             __   __         __       ___  ___  __  .  __     ___       __        
+            /  ` /  \  |\/| |__) |  |  |  |__  |__) ' /__`     |  |  | |__) |\ |  
+            \__, \__/  |  | |    \__/  |  |___ |  \   .__/     |  \__/ |  \ | \| .
+                                                                                  ");
             sleep(2);
             $this->players['The Computer'] = random_int(1, $this->barrels);
 
             if ($this->players['The Computer'] === $this->bullet) {
-                $this->info("\n\n\t\tBOOM !!!\n\t\tThe Computer has lost the game !!!\n\t\tYou won !!!\n\n\t\t<----CONGRATULATIONS---->");
+                system('clear');
+                $this->info("\n\n\t\t
+                 __   __   __             /  /  /
+                |__) /  \ /  \  |\/|     /  /  / 
+                |__) \__/ \__/  |  |    .  .  .  
+                                                 \n\t\t");
+
+                sleep(2);
+                system('clear');
+                $this->info("\n\t\t
+                 __   __         __       ___  ___  __      __     ___  __   
+                /  ` /  \  |\/| |__) |  |  |  |__  |__)    |  \ | |__  |  \  
+                \__, \__/  |  | |    \__/  |  |___ |  \    |__/ | |___ |__/ .
+                                                                             \n");
+                sleep(2);
+                system('clear');
+                $this->info("\n\t\t
+                     __                __            /  /  /
+                \ / /  \ |  |    |  | /  \ |\ |     /  /  / 
+                 |  \__/ \__/    |/\| \__/ | \|    .  .  .  
+                                                            ");
+                sleep(2);
+                system('clear');
+                $this->info("\n\t\t
+                 __   __        __   __       ___                ___    __        __  
+                /  ` /  \ |\ | / _` |__)  /\   |  |  | |     /\   |  | /  \ |\ | /__` 
+                \__, \__/ | \| \__> |  \ /~~\  |  \__/ |___ /~~\  |  | \__/ | \| .__/ 
+                                                                                      ");
                 $this->status();
                 $this->info("\n\t\t
                 ┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌
@@ -161,25 +232,38 @@ class RussianRoulette extends Command
                 ┌┌┌┌┌┌┌┌┌██████████████████┌┌┌┌┌┌┌┌┌┌┌┌┌
                 ┌┌┌┌┌┌┌┌┌┌██████████████┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌
                 ┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌");
-                $this->register->set('You', 'Won');
-                $this->register->set('The Computer', 'Lost');
+                $this->computer = "Lost";
+                $this->player = "Won";
                 break;
             } else {
-                $this->info("\n\n\t\tIs empty !!!\n");
+                $this->info("\n\n\t\t
+                   __      ___        __  ___          /  /  /
+                | /__`    |__   |\/| |__)  |  \ /     /  /  / 
+                | .__/    |___  |  | |     |   |     .  .  .  
+                                                              \n");
                 sleep(2);
                 system('clear');
                 $this->status();
-                $this->info("\n\n\t\tBoth are still alive.\n");
+                $this->info("\n\n
+                 __  _____           __  ___    _____                         ___ 
+                |__)/  \||__|    /\ |__)|__    /__`|||   |       /\ |   |\  /|__  
+                |__)\__/||  |   /~~\|  \|___   .__/|||___|___   /~~\|___| \/ |___.
+                                                                                  ");
                 sleep(3);
                 system('clear');
             }
         }
-        $this->register->set('barrels', $this->barrels);
-        $this->register->set('bool', true);
+
+        $this->bool = true;
+        $this->register_stats();
     }
     private function abort()
     {
-        $this->info("\n\n\t\tWhat a Coward !!!\n\n\t\t
+        $this->info("\n\n\t\t
+                       ___             __   __             __   __       /
+        |  | |__|  /\   |      /\     /  ` /  \ |  |  /\  |__) |  \     / 
+        |/\| |  | /~~\  |     /~~\    \__, \__/ |/\| /~~\ |  \ |__/    .  
+                                                                          \n\n\t\t
             ___________1¶¶¶¶¶¶¶¶¶¶1__________1¶¶¶¶¶¶¶¶1_______
             ________¶11____________¶11______¶1________¶¶1_____
             ______¶1___¶¶1_____1¶¶___1¶¶___¶____________¶¶____
@@ -205,13 +289,17 @@ class RussianRoulette extends Command
     private function rules()
     {
         system('clear');
-        $this->info("\tRules are the following:\n");
+        $this->info("\t
+         __             ___  __   
+        |__) |  | |    |__  /__` .
+        |  \ \__/ |___ |___ .__/ .
+                                  \n");
         sleep(2);
-        $this->info("\t1)There are two players you and the computer\n");
+        $this->info("\t1)There are two players you and the computer.\n");
         sleep(2);
-        $this->info("\t2)The gun is loaded with one bullet\n");
+        $this->info("\t2)The gun is loaded with one bullet.\n");
         sleep(2);
-        $this->info("\t3)Each player in turn raises a gun to their forehead and pulls the trigger\n");
+        $this->info("\t3)Each player in turn raises a gun to their forehead and pulls the trigger.\n");
         sleep(2);
         $this->info("\t4)The game continues till there is only one player alive.");
         sleep(4);
@@ -274,15 +362,27 @@ class RussianRoulette extends Command
         ");
         sleep(3);
         system('clear');
-        $this->info("\n\t\tIt is The Russian Roulette game.");
-        $ans = $this->ask("\t\tAre you sure you want to play?");
-        while (!(('yes' == strtolower($ans) || 'y' == strtolower($ans)) || ('no' == strtolower($ans) || 'n' == strtolower($ans)))) {
-            $ans = $this->ask("Choose yes or no!");
+        $this->info("\n\t\t 
+         __        __   __                  __   __             ___ ___ ___  ___ 
+        |__) |  | /__` /__` |  /\  |\ |    |__) /  \ |  | |    |__   |   |  |__  
+        |  \ \__/ .__/ .__/ | /~~\ | \|    |  \ \__/ \__/ |___ |___  |   |  |___ 
+                                                                                 
+                           __                    ___                             
+                          / _`  /\   |\/|  |\/| |__                              
+                          \__> /~~\  |  |  |  | |___                             
+                                                                                 ");
+        $userInput = $this->ask("\t\t\tAre you sure you want to play?");
+        while (!(('yes' == strtolower($userInput) || 'y' == strtolower($userInput)) || ('no' == strtolower($userInput) || 'n' == strtolower($userInput)))) {
+            $userInput = $this->ask("\t\t
+                 ___  __      __   __           __       /  /  /
+            \ / |__  /__`    /  \ |__)    |\ | /  \     /  /  / 
+             |  |___ .__/    \__/ |  \    | \| \__/    .  .  .  
+                                                                !");
         }
-        if ('yes' == strtolower($ans) || 'y' == strtolower($ans)) {
+        if ('yes' == strtolower($userInput) || 'y' == strtolower($userInput)) {
             system('clear');
             $this->play();
-        } else if ('no' == strtolower($ans) || 'n' == strtolower($ans)) {
+        } else if ('no' == strtolower($userInput) || 'n' == strtolower($userInput)) {
             system('clear');
             $this->abort();
         }
