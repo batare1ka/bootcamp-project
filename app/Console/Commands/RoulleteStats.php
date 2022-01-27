@@ -41,24 +41,20 @@ class RoulleteStats extends Command
      * @return int
      */
     public function handle()
-    {   $compWins = 0;
-        $playerWins = 0;
+    {
         $arr = $this->register->get('stats', []);
-        $length = count($arr) ?? 0;
-        for($i = 0; $i < $length; $i++){
-            if(isset($arr[$i+1]) && $arr[$i]=="Won" && $arr[$i+1] == "Lost"){
-                $compWins++;
-            }else  if(isset($arr[$i+1]) && $arr[$i]=="Lost" && $arr[$i+1] == "Won"){
-                $playerWins++;
-            }
-        }
-        $tab = array_chunk($arr,5);
+        $tab = array_chunk($arr, 5);
         $totalGames = count($tab) ?? 0;
         $this->info('List of Games');
         $this->table(['Bullet', 'Computer', "Player", "Laps", "Time"], $tab);
         $this->info('Overall Statistic');
-        $this->table(["Computer' Wins", "Player's Wins", "Total Games"], [[$compWins, $playerWins, $totalGames]]);
-       
-
+        $this->table(
+            ["Computer' Wins", "Player's Wins", "Total Games"],
+            [[
+                $this->register->get('overallStats')[0] ?? 0,
+                $this->register->get('overallStats')[1] ?? 0,
+                $this->register->get('overallStats')[2] ?? 0
+            ]]
+        );
     }
 }

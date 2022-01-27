@@ -44,7 +44,21 @@ class RussianRoulette extends Command
             $this->player, 
              $this->bullet,
               Carbon::now()], 60*60*24);
+              $compWins = 0;
+              $playerWins = 0;
+              $arr = $this->register->get('stats',[]);
+              $length = count($arr) ?? 0;
+              $totalGames = $length / 5 ?? 0;
+              for($i = 0; $i < $length; $i++){
+                if(isset($arr[$i+1]) && $arr[$i]=="Won" && $arr[$i+1] == "Lost"){
+                    $compWins++;
+                }else  if(isset($arr[$i+1]) && $arr[$i]=="Lost" && $arr[$i+1] == "Won"){
+                    $playerWins++;
+                }
+            }
+            $this->register->set('overallStats', [$compWins, $playerWins, $totalGames]);
         }
+
         $this->bool = false;
     }
 
