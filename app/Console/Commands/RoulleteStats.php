@@ -44,9 +44,8 @@ class RoulleteStats extends Command
     {
         $arr = $this->register->get('stats', []);
         $tab = array_chunk($arr, 5);
-        $totalGames = count($tab) ?? 0;
         $this->info('List of Games');
-        $this->table(['Bullet', 'Computer', "Player", "Laps", "Time"], $tab);
+        $this->table(['Unlucky bullet', 'Computer', "Player", "Laps", "Time"], $tab);
         $this->info('Overall Statistic');
         $this->table(
             ["Computer' Wins", "Player's Wins", "Total Games"],
@@ -56,5 +55,13 @@ class RoulleteStats extends Command
                 $this->register->get('overallStats')[2] ?? 0
             ]]
         );
+        $bulletStats = [];
+       foreach ($this->register->get('bulletStats', []) as $num => $times) {
+            $bulletStats[] = [$num, $times];
+        }
+        ksort($bulletStats);
+        $this->info("Bullets' Stats");
+        $this->table(['Bullet' , 'Times'], $bulletStats);
+
     }
 }

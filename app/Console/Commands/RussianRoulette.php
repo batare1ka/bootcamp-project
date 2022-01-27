@@ -39,10 +39,10 @@ class RussianRoulette extends Command
     public function register_stats(){
         if($this->bool){
             $this->register->set('stats', [...$this->register->get('stats',[]), 
-            $this->laps,
+            $this->bullet,
             $this->computer,
             $this->player, 
-             $this->bullet,
+            $this->laps,
               Carbon::now()], 60*60*24);
               $compWins = 0;
               $playerWins = 0;
@@ -56,7 +56,12 @@ class RussianRoulette extends Command
                     $playerWins++;
                 }
             }
-            $this->register->set('overallStats', [$compWins, $playerWins, $totalGames]);
+            $bulletStats = $this->register->get('bulletStats', []);
+            $bulletStats[$this->bullet] = $bulletStats[$this->bullet] ?? 0;
+            $bulletStats[$this->bullet]++;
+
+            $this->register->set('bulletStats', $bulletStats, 60*60*24);
+            $this->register->set('overallStats', [$compWins, $playerWins, $totalGames], 60*60*24);
         }
 
         $this->bool = false;
