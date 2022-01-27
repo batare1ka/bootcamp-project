@@ -46,9 +46,9 @@ class RoulleteStats extends Command
         $arr = $this->register->get('stats', []);
         $length = count($arr) ?? 0;
         for($i = 0; $i < $length; $i++){
-            if($i%2==1 && $arr[$i]=="Won"){
+            if(isset($arr[$i+1]) && $arr[$i]=="Won" && $arr[$i+1] == "Lost"){
                 $compWins++;
-            }else  if($i%2==1 && $arr[$i]=="Lost"){
+            }else  if(isset($arr[$i+1]) && $arr[$i]=="Lost" && $arr[$i+1] == "Won"){
                 $playerWins++;
             }
         }
