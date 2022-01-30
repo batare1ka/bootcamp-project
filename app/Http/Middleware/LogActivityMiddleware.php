@@ -2,14 +2,13 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\DummyRequestActivityLogger;
 use App\Services\RequestActivityLoggerInterface;
 use Closure;
 use Illuminate\Http\Request;
 
 class LogActivityMiddleware
 {
-    private DummyRequestActivityLogger $logger;
+    private RequestActivityLoggerInterface $logger;
     /**
      * @param RequestActivityLoggerInterface $logger
      */

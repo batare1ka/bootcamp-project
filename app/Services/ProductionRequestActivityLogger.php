@@ -1,6 +1,8 @@
 <?php 
 
 namespace App\Services;
+
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProductionRequestActivityLogger extends AbstractRequestActivityLogger
@@ -8,12 +10,9 @@ class ProductionRequestActivityLogger extends AbstractRequestActivityLogger
     protected function collectRequestData(Request $request): array
     {
         return [
-            "name" => $request->input('name'),
-            "email" => $request->input('email'),
-            "phone" => $request->input('phone'),
-            "country" => $request->input('country'),
-            "region" => $request->input('region'),
-            "ip" => $request->ip()
+            "ip" => $request->ip(),
+            "time: " => Carbon::now(),
+            "full_url" => $request->fullUrl() 
         ];
     }
 }
