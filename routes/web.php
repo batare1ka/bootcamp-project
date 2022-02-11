@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\api\ArticleApiController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
@@ -30,4 +31,5 @@ Route::post('/contactUs', [ContactController::class, 'send'])->name('contactUs.s
 ->middleware('log.activity:sendContactUs');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product')->where('id', '\b\d{0,10}\b');
-
+Route::put('/api/articles/{id}', [ArticleApiController::class, 'editAnArticle']);
+Route::post('/api/articles/',  [ArticleApiController::class, 'createArticle']);
