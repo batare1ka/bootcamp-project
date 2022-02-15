@@ -41,6 +41,9 @@
       let smallimg = document.getElementsByClassName("small-img");
      [...smallimg].map(e => e.onclick = function(){MainImg.src = e.src});
   </script>
+   @elseif(Str::is(request()->path(), 'blog'))
+   <script src="/assets/js/app.js"></script>
+   <script src="/assets/js/blog.js"></script>
   @endif
 </body>
 

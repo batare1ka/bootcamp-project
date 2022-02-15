@@ -24,7 +24,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Brand::factory()->count(20)
-        ->has(Product::factory()->has(Category::factory())->has(ProductsDetail::factory())->has(Stock::factory()), 'products')
+        ->has(Product::factory()
+        ->has(Category::factory())
+        ->has(ProductsDetail::factory())
+        ->has(Stock::factory()), 'products')
         ->create();
         
         Article::factory()

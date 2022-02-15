@@ -12,6 +12,23 @@ use Illuminate\Validation\Rule;
 class ArticleApiController extends Controller
 {
     private $responseFactory;
+    public function readMostPopular(Request $request)
+    {
+        $mostPopularArticles = Article::all()
+        ->sortByDesc("view_count")
+        ->take(10);
+        $articlesArray = [];
+        foreach ($mostPopularArticles as  $article) {
+           $articlesArray[] = [
+               "id" => $article->id,
+               "title" => $article->title,
+               "image_url" => $article->image,
+               "excerpt" => $article->excerpt,
+               "view_count" => $article->view_count
+           ];
+        }
+        return $this->responseFactory->json($articlesArray);
+    }
     public function __construct(ResponseFactory $responseFactory)
     {
         $this->responseFactory = $responseFactory;

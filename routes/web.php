@@ -33,3 +33,4 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product')->where('id', '\b\d{0,10}\b');
 Route::put('/api/articles/{id}', [ArticleApiController::class, 'editAnArticle']);
 Route::post('/api/articles/',  [ArticleApiController::class, 'createArticle']);
+Route::get('/api/articles/most-popular',  [ArticleApiController::class, 'readMostPopular']);

@@ -120,14 +120,14 @@ class BlogController extends Controller
              isset($request['sort'])&&$request['sort']==="MOST"? 'DESC' :
               (isset($request['sort'])&&$request['sort']==="ASC"?"ASC":'DESC'))
               ->withCount('comments')
-              ->paginate(5)
+              ->paginate(8)
               ->withQueryString();
         }else{
             $articles = Article::orderBy(isset($request['sort'])&&$request['sort']==="MOST"?'comments_count':'created_at',
              isset($request['sort'])&&$request['sort']==="MOST"? 'DESC' : 
              (isset($request['sort'])&&$request['sort']==="ASC"?"ASC":'DESC'))
              ->withCount('comments')
-             ->paginate(5)
+             ->paginate(8)
              ->withQueryString();
             }
 
@@ -143,6 +143,8 @@ class BlogController extends Controller
     public function showArticle($id, Request $request, ModelLogger $logger)
     {
         $article = Article::with('comments')->find($id);
+        $article->view_count++;
+        $article->save();
         $logger->logModel($request->user(), $article);
 
         return view('blog.article', ['article' => $article]);
