@@ -488,9 +488,13 @@ footer .copyright i {
   transform: translateY(-5px);
 }
 
-.btn-primary {
+.blog-btn{
   background-color: #fb774b;
   border-color: #fb774b;
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 9px 15px;
+  font-family: "Neucha", cursive;
 }
 section#popular-articles ul[articles-list]{
   list-style: none;
@@ -499,6 +503,12 @@ section#popular-articles ul[articles-list]{
 }
 section#popular-articles ul[articles-list] .card-text{
   font-size: 1rem;
+}
+.article__error{
+  color: red;
+  font-size: 0.8rem;
+  display: block;
+  margin: -4px auto -7px;
 }
 
 /* Cart */
