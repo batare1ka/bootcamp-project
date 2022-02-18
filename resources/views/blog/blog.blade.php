@@ -27,7 +27,7 @@
             <button class="btn btn-primary blog-btn">Apply sorting</button>
           </div>
         </form>
-        <div class=" col-2 text-end">
+        <div class="col-2 text-end">
           <a class="btn btn-primary btn-lg text-light blog-btn" href="/blog/article/create">Add article</a>
         </div>
       </div>

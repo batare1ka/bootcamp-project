@@ -60,4 +60,15 @@ class BlogController extends Controller
             "users" => $users
         ]);
     }
+    public function update($id)
+    {
+        $article = Article::with(["category", "author"])->find($id);
+        $categories = BlogCategory::all();
+        $users = User::all();
+        return view('blog.article-update', [
+            'article' => $article,
+            "categories" => $categories,
+            "users" => $users
+        ]);
+    }
 }

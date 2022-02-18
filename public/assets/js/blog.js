@@ -2105,6 +2105,8 @@ var Article = /*#__PURE__*/function () {
 
     _defineProperty(this, "category", void 0);
 
+    _defineProperty(this, "image", void 0);
+
     _classPrivateFieldInitSpec(this, _formData, {
       writable: true,
       value: new FormData()
@@ -2266,6 +2268,189 @@ axios.get('/api/articles/most-popular').then(function (_ref) {
     listOfArticles.append(articleOnPage);
   });
 });
+
+/***/ }),
+
+/***/ "./resources/js/blog/update-article.js":
+/*!*********************************************!*\
+  !*** ./resources/js/blog/update-article.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
+var _formData = /*#__PURE__*/new WeakMap();
+
+var UpdateArticle = /*#__PURE__*/function () {
+  function UpdateArticle(title, description, category, author, image) {
+    _classCallCheck(this, UpdateArticle);
+
+    _defineProperty(this, "title", void 0);
+
+    _defineProperty(this, "description", void 0);
+
+    _defineProperty(this, "category", void 0);
+
+    _defineProperty(this, "image", void 0);
+
+    _classPrivateFieldInitSpec(this, _formData, {
+      writable: true,
+      value: new FormData()
+    });
+
+    this.title = title;
+    this.description = description;
+    this.category = category;
+    this.author = author;
+    this.image = image;
+  }
+
+  _createClass(UpdateArticle, [{
+    key: "setFormData",
+    value: function setFormData() {
+      _classPrivateFieldGet(this, _formData).append("_method", "PUT");
+
+      _classPrivateFieldGet(this, _formData).append("title", this.title);
+
+      _classPrivateFieldGet(this, _formData).append("description", this.description);
+
+      _classPrivateFieldGet(this, _formData).append("category", this.category);
+
+      _classPrivateFieldGet(this, _formData).append("author", this.author);
+
+      _classPrivateFieldGet(this, _formData).append("image", this.image);
+    }
+  }, {
+    key: "getFormData",
+    value: function getFormData() {
+      return _classPrivateFieldGet(this, _formData);
+    }
+  }]);
+
+  return UpdateArticle;
+}();
+/** @type {HTMLFormElement} updateArticleForm*/
+
+
+var updateArticleForm = document.querySelector("#updateArticleForm");
+
+if (updateArticleForm) {
+  var cleanUpUpdatedForm = function cleanUpUpdatedForm() {
+    titleUpdateInput.value = "";
+    descriptionUpdateInput.value = "";
+    categoryUpdateInput.value = null;
+    authorUpdateInput.value = null;
+    imageUpdateInput.files[0] = null;
+    imageUpdatePreview.src = "";
+    imageUpdatePreview.hidden = true;
+  };
+
+  var showErrosOnUpdatePage = function showErrosOnUpdatePage() {
+    for (var _len = arguments.length, errors = new Array(_len), _key = 0; _key < _len; _key++) {
+      errors[_key] = arguments[_key];
+    }
+
+    Object.keys(errors[0]).forEach(function (key) {
+      var errorTag = document.querySelector(".".concat(key, "Error-update"));
+      errorTag.hidden = false;
+      errorTag.textContent = errors[0][key];
+      window[key + "UpdateInput"].classList.add("is-invalid");
+    });
+  };
+
+  var removeErrosFromUpdatePage = function removeErrosFromUpdatePage() {
+    var formElements = [].concat(_toConsumableArray(updateArticleForm.querySelectorAll(".article__error-update")), _toConsumableArray(updateArticleForm.elements));
+    formElements.forEach(function (e) {
+      if (e.classList.contains("is-invalid")) {
+        e.classList.remove("is-invalid");
+      } else if (e.classList.contains("article__error-update")) {
+        e.hidden = true;
+      }
+    });
+  };
+
+  /** @type {HTMLUpdateInputElement} titleUpdateInput */
+  var titleUpdateInput = updateArticleForm.querySelector("#titleUpdateInput");
+  /** @type {HTMLTextAreaElement} descriptionUpdateInput */
+
+  var descriptionUpdateInput = updateArticleForm.querySelector("#descriptionUpdateInput");
+  /** @type {HTMLSelectElement} categoryUpdateInput */
+
+  var categoryUpdateInput = updateArticleForm.querySelector("#categoryUpdateInput");
+  /** @type {HTMLSelectElement} authorUpdateInput */
+
+  var authorUpdateInput = updateArticleForm.querySelector("#authorUpdateInput");
+  /** @type {HTMLUpdateInputElement} imageUpdateInput */
+
+  var imageUpdateInput = updateArticleForm.querySelector("#imageUpdateInput");
+  /** @type {HTMLImageElement} imageUpdatePreview */
+
+  var imageUpdatePreview = updateArticleForm.querySelector("#imageUpdatePreview");
+
+  imageUpdateInput.onchange = function () {
+    var file = imageUpdateInput.files[0];
+
+    if (!file) {
+      imageUpdatePreview.src = "";
+      imageUpdatePreview.hidden = true;
+    } else {
+      imageUpdatePreview.src = URL.createObjectURL(file);
+      imageUpdatePreview.hidden = false;
+    }
+  };
+
+  updateArticleForm.onsubmit = function (event) {
+    event.preventDefault();
+    var updateArticle = new UpdateArticle(titleUpdateInput.value, descriptionUpdateInput.value, categoryUpdateInput.value, authorUpdateInput.value, imageUpdateInput.files[0]);
+    updateArticle.setFormData();
+    var articleId = window.location.pathname.match(/^.+\/(\d{0,10})$/)[1];
+    axios.post("/api/articles/".concat(articleId), updateArticle.getFormData()).then(function () {
+      cleanUpUpdatedForm();
+      removeErrosFromUpdatePage();
+      var toast = document.querySelector(".toast");
+      setTimeout(function () {
+        toast.classList.add("show");
+      }, 1000);
+      setTimeout(function () {
+        toast.classList.remove("show");
+      }, 5000);
+    })["catch"](function (error) {
+      removeErrosFromUpdatePage();
+      showErrosOnUpdatePage(error.response.data);
+    });
+  };
+}
 
 /***/ }),
 
@@ -2510,6 +2695,8 @@ var __webpack_exports__ = {};
 __webpack_require__(/*! ./most-popular */ "./resources/js/blog/most-popular.js");
 
 __webpack_require__(/*! ./create-article */ "./resources/js/blog/create-article.js");
+
+__webpack_require__(/*! ./update-article */ "./resources/js/blog/update-article.js");
 })();
 
 /******/ })()

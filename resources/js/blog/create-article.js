@@ -4,6 +4,7 @@ class Article {
     title;
     description;
     category;
+    image;
     #formData = new FormData();
     constructor(title, description, category, author, image) {
         this.title = title;

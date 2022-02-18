@@ -2,11 +2,16 @@
 @section('content')
 <section class="container-lg mt-5 pt-5 text-center blog__item">
     <h2 class="mt-5 pt-5">{{ $article->title }}</h2>
-    <p class="fs-6 text-muted">On {{ $article->created_at->toDateString() }}</p>
+    <div class="row">
+        <div class="col-6 offset-3 fs-6 text-muted text-center">Created at {{ $article->created_at->toDateString() }}</div>
+        <div class="col-2 text-end">
+            <a class="btn btn-primary btn-lg text-light blog-btn" href="/blog/article/update/{{ $article->id }}">Edit article</a>
+        </div>
+    </div>
     <img class="img-fluid mt-5 mx-auto d-block" src="{{ \Illuminate\Support\Facades\Storage::url($article->image) }}"
         alt="">
     <div class="fs-6 mt-4">
-        <p class="fw-bold">{{ $article->description }}</p>
+        <p class="fw-bold text-center">{{ $article->description }}</p>
 
 
         <div class="row mx-auto pt-4 my-5 g-5 justify-content-start border-bottom">
@@ -67,7 +72,7 @@
             </form>
 
         </div>
-        <x-comments :comments="$article->comments"/>
+        <x-comments :comments="$article->comments" />
 
     </div>
 </section>

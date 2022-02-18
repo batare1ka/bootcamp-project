@@ -41,7 +41,9 @@
       let smallimg = document.getElementsByClassName("small-img");
      [...smallimg].map(e => e.onclick = function(){MainImg.src = e.src});
   </script>
-  @elseif(Str::is(request()->path(), 'blog') || request()->path() == 'blog/article/create')
+  @elseif(Str::is(request()->path(), 'blog') 
+  || request()->path() == 'blog/article/create'
+  || Str::contains(request()->path(), 'blog/article/update/'))
   <script src="/assets/js/app.js"></script>
   <script src="/assets/js/blog.js"></script>
   @endif

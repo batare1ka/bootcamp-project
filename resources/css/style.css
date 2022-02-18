@@ -496,7 +496,8 @@ section#popular-articles ul[articles-list]{
 section#popular-articles ul[articles-list] .card-text{
   font-size: 1rem;
 }
-.article__error{
+.article__error,
+.article__error-update{
   color: red;
   font-size: 0.8rem;
   display: block;

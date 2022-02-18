@@ -34,35 +34,39 @@ class ArticleApiController extends Controller
     {
         $this->responseFactory = $responseFactory;
     }
-    public function editAnArticle($id, Request $request)
+    public function updateAnArticle($id, Request $request)
     {
         $article = Article::find($id);
-
         if (!$article) {
             return $this->responseFactory->json(null, 404);
         }
 
         $validator = Validator::make($request->all(), [
-            "title" => ["bail", "required", "string", Rule::unique('articles')->ignore($article->id), "max:200", "min:3"],
+            "title" => ["bail", "required", "string", "max:200", "min:3"],
             "description" => ["bail", "required", "string", "max:300", "min:10"],
-            "excerpt" => ["bail", "required", "string", "max:100", "min:3"],
-            "seo_title" => ["bail", "required", "string", "max:100", "min:3"]
+            "category" => ["bail", "required", "integer", "max:300", "min:1"],
+            "author" => ["bail", "required", "integer", "max:300", "min:1"],
+            "image" => ["bail", "required", "image", Rule::dimensions()->maxWidth(1024)->maxHeight(768)->minWidth(320)->minHeight(240)]
         ]);
 
         if ($validator->fails()) {
-            return $this->responseFactory->json(null, 400);
+            return $this->responseFactory->json($validator->errors(), 400);
         }
 
-        $article->title = $request->title;
-        $article->description = $request->description;
-        $article->excerpt = $request->excerpt;
-        $article->seo_title = $request->seo_title;
+        $article->title = $request->input("title");
+        $article->description = $request->input("description");
+        $article->author_id = $request->input("author");
+        $article->image = $request->file("image")->store("/", "public");
+        $article->excerpt = Str::limit($request->input("description"), 100);
+        $article->category_id = $request->input("category");
+        $article->seo_title = $request->input("title");
+        $article->seo_description = Str::limit($request->input("description"), 250);
         $result = $article->save();
 
         if ($result) {
             return $this->responseFactory->json(null, 200);
         } else {
-            return $this->responseFactory->json(null, 400);
+            return $this->responseFactory->json($validator->errors(), 400);
         }
     }
     public function createArticle(Request $request)
