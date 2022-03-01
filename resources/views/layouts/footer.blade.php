@@ -1,7 +1,7 @@
-<footer class="mt-5 py-5">
+<footer class="py-5">
     <div class="row container mx-auto pt-5">
       <div class="footer-one col-lg-3 col-md-6 col-12">
-        <img src="{{ URL('assets/images/logo.png') }}" alt="" />
+        <img src="{{ \Illuminate\Support\Facades\Storage::url("./images/logo.png") }}" alt="" />
         <p class="pt-3">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat nam
           ratione natus incidunt nisi culpa, esse eius explicabo cum
@@ -39,27 +39,27 @@
         <div class="row">
           <img
             class="image-fluid w-25 h-100 m-2"
-            src="{{ URL('assets/images/insta/1.jpg') }}"
+            src="{{ \Illuminate\Support\Facades\Storage::url("./images/insta/1.jpg") }}"
             alt=""
           />
           <img
             class="image-fluid w-25 h-100 m-2"
-            src="{{ URL('assets/images/insta/2.jpg') }}"
+            src="{{ \Illuminate\Support\Facades\Storage::url("./images/insta/2.jpg") }}"
             alt=""
           />
           <img
             class="image-fluid w-25 h-100 m-2"
-            src="{{ URL('assets/images/insta/3.jpg') }}"
+            src="{{ \Illuminate\Support\Facades\Storage::url("./images/insta/3.jpg") }}"
             alt=""
           />
           <img
             class="image-fluid w-25 h-100 m-2"
-            src="{{ URL('assets/images/insta/4.jpg') }}"
+            src="{{ \Illuminate\Support\Facades\Storage::url("./images/insta/4.jpg") }}"
             alt=""
           />
           <img
             class="image-fluid w-25 h-100 m-2"
-            src="{{ URL('assets/images/insta/5.jpg') }}"
+            src="{{ \Illuminate\Support\Facades\Storage::url("./images/insta/5.jpg") }}"
             alt=""
           />
         </div>
@@ -68,7 +68,7 @@
     <div class="copyright mt-5">
       <div class="row container mx-auto">
         <div class="col-lg-3 col-md-6 col-12 mb-4">
-          <img src="{{ URL('assets/images/payment.png') }}" alt="" />
+          <img src="{{ \Illuminate\Support\Facades\Storage::url("./images/payment.png") }}" alt="" />
         </div>
 
         <div class="col-lg-4 col-md-6 col-12 text-nowrap mb-2">

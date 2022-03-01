@@ -13,11 +13,17 @@ use Illuminate\Validation\Rule;
 class ArticleApiController extends Controller
 {
     private $responseFactory;
+
+    public function __construct(ResponseFactory $responseFactory)
+    {
+        $this->responseFactory = $responseFactory;
+    }
+    
     public function readMostPopular(Request $request)
     {
         $mostPopularArticles = Article::all()
         ->sortByDesc("view_count")
-        ->take(10);
+        ->take(5);
         $articlesArray = [];
         foreach ($mostPopularArticles as  $article) {
            $articlesArray[] = [
@@ -30,10 +36,7 @@ class ArticleApiController extends Controller
         }
         return $this->responseFactory->json($articlesArray);
     }
-    public function __construct(ResponseFactory $responseFactory)
-    {
-        $this->responseFactory = $responseFactory;
-    }
+
     public function updateAnArticle($id, Request $request)
     {
         $article = Article::find($id);

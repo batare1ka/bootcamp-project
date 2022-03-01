@@ -34,7 +34,7 @@
       </div>
       <img
         class="col-sm-6 img-fluid rounded"
-        src="{{ URL('assets/images/about/history-img.jpg') }}"
+        src="{{ \Illuminate\Support\Facades\Storage::url("./images/about/history-img.jpg") }}"
         alt="img"
       />
     </div>
@@ -71,22 +71,22 @@
       </p>
       <div class="row mt-5 gx-5">
         <div class="col-sm-3">
-          <img class="img-fluid" src="{{ URL('assets/images/about/employee.jpg') }}" alt="" />
+          <img class="img-fluid" src="{{ \Illuminate\Support\Facades\Storage::url("./images/about/employee.jpg") }}" alt="" />
           <p class="mt-3 mb-0">Andro Smith</p>
           <p class="fs-5">Team Leader</p>
         </div>
         <div class="col-sm-3">
-          <img class="img-fluid" src="{{ URL('assets/images/about/employee1.jpg') }}" alt="" />
+          <img class="img-fluid" src="{{ \Illuminate\Support\Facades\Storage::url("./images/about/employee1.jpg") }}" alt="" />
           <p class="mt-3 mb-0">Jonathan Doe</p>
           <p class="fs-5">Senio Officer</p>
         </div>
         <div class="col-sm-3">
-          <img class="img-fluid" src="{{ URL('assets/images/about/employee3.jpg') }}" alt="" />
+          <img class="img-fluid" src="{{ \Illuminate\Support\Facades\Storage::url("./images/about/employee3.jpg") }}" alt="" />
           <p class="mt-3 mb-0">Samia Jasse</p>
           <p class="fs-5">Advisor of Company</p>
         </div>
         <div class="col-sm-3">
-          <img class="img-fluid" src="{{ URL('assets/images/about/employee4.jpg') }}" alt="" />
+          <img class="img-fluid" src="{{ \Illuminate\Support\Facades\Storage::url("./images/about/employee4.jpg") }}" alt="" />
           <p class="mt-3 mb-0">Jasica Mari</p>
           <p class="fs-5">Advisor of Company</p>
         </div>

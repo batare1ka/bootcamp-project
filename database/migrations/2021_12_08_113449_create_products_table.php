@@ -20,8 +20,9 @@ class CreateProductsTable extends Migration
             $table->unsignedDecimal('price', 10, 2);
             $table->string('img_large_url', 255)->nullable();
             $table->string('img_small_url', 255)->nullable();
+            $table->integer("view_count")->default(0);
             $table->index(['name', 'price']);
-           
+            $table->timestamps();
         });
     }
 

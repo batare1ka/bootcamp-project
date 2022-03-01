@@ -9,14 +9,13 @@ class Product extends Model implements LoggableInterface
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $fillable = [
         'brand_id',
         'name',
         'price',
         'img_large_url',
-        'img_small_url'
+        'img_small_url',
+        "view_count"
         
     ];
 

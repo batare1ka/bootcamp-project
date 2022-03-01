@@ -5,7 +5,7 @@
     <h1 class="fw-blod pt-5">Contact</h1>
     <hr style="height: 3px" />
   </section>
-  <div class="container col-sm-5 col-lg-4 py-1">
+  <div class="container col-sm-5 col-lg-4 py-1 mb-5">
     <form class="needs-validation" id="registrationForm" method="POST" action="{{ route('contactUs.send') }}">
       <label for="exampleInputText1" class="form-label">Full Name</label>
       <div class="input-group mb-2">

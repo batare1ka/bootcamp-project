@@ -19,11 +19,13 @@
     text-align: center;
     display: none;
     transition: 1s ease;
+    margin-top: 30px;
 }
 
 .preloader {
     width: 120px;
     height: 120px;
     -o-object-fit: cover;
-       object-fit: cover;  
+       object-fit: cover;
+    margin-bottom: 30px; 
 }

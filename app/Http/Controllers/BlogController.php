@@ -22,20 +22,22 @@ class BlogController extends Controller
              isset($request['sort'])&&$request['sort']==="MOST"? 'DESC' :
               (isset($request['sort'])&&$request['sort']==="ASC"?"ASC":'DESC'))
               ->withCount('comments')
-              ->paginate(8)
+              ->paginate(12)
               ->withQueryString();
         }else{
             $articles = Article::orderBy(isset($request['sort'])&&$request['sort']==="MOST"?'comments_count':'created_at',
              isset($request['sort'])&&$request['sort']==="MOST"? 'DESC' : 
              (isset($request['sort'])&&$request['sort']==="ASC"?"ASC":'DESC'))
              ->withCount('comments')
-             ->paginate(8)
+             ->paginate(12)
              ->withQueryString();
             }
+            $adviceArticles = Article::where("category_id", 23)->get();
 
         return view('blog.blog', [
             'articles' => $articles,
             'categories' => $categories,
+            'advice_articles' => $adviceArticles,
             'filter' => [
                 'sort' => $request['sort'] ?? 'ASC',
                 'category' => $request['category'] ?? '0'

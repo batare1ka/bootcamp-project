@@ -2246,25 +2246,14 @@ axios.get('/api/articles/most-popular').then(function (_ref) {
   var data = _ref.data;
   data.forEach(function (article) {
     var articleOnPage = popularNewsTemplate.content.cloneNode(true).children[0];
-    var title = articleOnPage.querySelector(".card-title");
+    var title = articleOnPage.querySelector(".text-overlay h2");
     title.textContent = article.title;
-    title.style.cursor = "pointer";
     title.addEventListener("click", function () {
       location.href = "http://localhost:880/blog/article/".concat(article.id);
     });
-    articleOnPage.querySelector(".card-text").textContent = article.excerpt;
-    var image = articleOnPage.querySelector(".bg-image");
-    image.style.backgroundImage = "url(http://localhost:880/storage/".concat(article.image_url, ")");
-    image.style.backgroundSize = "contain";
-    image.style.backgroundPosition = "center";
-    image.style.backgroundRepeat = "no-repeat";
-
-    if (!article.view_count) {
-      articleOnPage.querySelector(".badge").remove();
-    } else {
-      articleOnPage.querySelector(".badge").innerHTML = "\n                ".concat(article.view_count, "\n                <span class=\"visually-hidden\">unread messages</span>");
-    }
-
+    articleOnPage.querySelector(".text-overlay p").textContent = article.excerpt;
+    var image = articleOnPage.querySelector(".blog-img");
+    image.src = article.image_url;
     listOfArticles.append(articleOnPage);
   });
 });

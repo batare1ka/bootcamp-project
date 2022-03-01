@@ -5,35 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Services\ModelLogger;
 
 class ShopController extends Controller
 {
     public function index(Request $req){
-        $request = request()->all();
-        if(isset($request['brand']) && $request['brand'] != '0'){
-            $products = Product::where('brand_id', $request['brand'])->paginate(12)->withQueryString();
-        }else{
-            if(isset($request['search'])){
-                $products = Product::whereRelation(
-                    'brand', 'name', 'like', '%'.$request['search'].'%'
-                )->orWhere('name', 'LIKE', '%'.$request['search'].'%')
-                ->paginate(12);
-            }else{
-                $products = Product::paginate(12);
-            }
-            
-        }
-        $brands = Brand::take(10)->get();
-        if($req->ajax()){
-            $view = view('components.prod-item', ['products' => $products])->render();
-           return response()->json(['html'=> $view]);
-        }
 
+        return view('shop.shop');
+    }
+    public function showProduct($id, Request $request, ModelLogger $logger){
+
+        $products = Product::with('brand', 'categories', 'productsDetail')->get();
+        $product = $products->find($id);
+        $product->view_count++;
+        $product->save();
+        $randomProducts = $products->random(4);
+
+        $logger->logModel($request->user(), $product);
         
-        return view('shop.shop',
-         ['products' => $products,
-            'brands' => $brands,
-            'filter' => ['brand' => request('brand') ?? '']
+        return view('product.product',
+         ['product' => $product,
+        'randomProducts' => $randomProducts
         ]);
     }
 }

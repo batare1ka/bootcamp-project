@@ -3,13 +3,14 @@
 <section class="container-lg mt-5 pt-5 text-center blog__item">
     <h2 class="mt-5 pt-5">{{ $article->title }}</h2>
     <div class="row">
-        <div class="col-6 offset-3 fs-6 text-muted text-center">Created at {{ $article->created_at->toDateString() }}</div>
+        <div class="col-6 offset-3 fs-6 text-muted text-center">Created at {{ $article->created_at->toDateString() }}
+        </div>
         <div class="col-2 text-end">
-            <a class="btn btn-primary btn-lg text-light blog-btn" href="/blog/article/update/{{ $article->id }}">Edit article</a>
+            <a class="btn btn-primary btn-lg text-light blog-btn" href="/blog/article/update/{{ $article->id }}">Edit
+                article</a>
         </div>
     </div>
-    <img class="img-fluid mt-5 mx-auto d-block" src="{{ \Illuminate\Support\Facades\Storage::url($article->image) }}"
-        alt="">
+    <img class="img-fluid mt-5 mx-auto d-block" src="{{ $article->image }}" alt="">
     <div class="fs-6 mt-4">
         <p class="fw-bold text-center">{{ $article->description }}</p>
 
@@ -34,43 +35,35 @@
             <div class="col-sm-3 px-0 text-sm-start">
                 <a class="text-decoration-underline" href="#"><i class="fas fa-chevron-left pe-1"></i>OLDER POST</a>
             </div>
-
-            <form action="" class="mb-5">
+            @auth
+            <form action="/blog/{{ $article->id }}/comments" class="mb-5">
                 <div class="row g-3">
-                    <h4 class="mb-5">LEAVE A COMMENT</h4>
-                    <div class="col-sm-6 text-start">
-                        <label for="exampleInputText1" class="form-label">Your Name</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                            <input type="text" class="form-control" id="exampleInputText1" required />
-                            <div class="valid-feedback">Looks good!</div>
-                            <div class="invalid-feedback">Please choose a username.</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 text-start">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-                            <input type="email" class="form-control" id="exampleInputEmail1" required />
-                            <div class="valid-feedback">Looks good!</div>
-                            <div class="invalid-feedback">Please type your email.</div>
-                        </div>
-                    </div>
+                    <h4 class="mb-4">LEAVE A COMMENT</h4>
+                    @csrf
                     <div class="col-12 text-start">
                         <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-chat-right-dots-fill"></i></span>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="comment"
+                                rows="3" required></textarea>
                             <div class="valid-feedback">Not required!</div>
                         </div>
+                        @error("comment")
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                         <p class="opacity-25">All blog comments are checked prior to publishing</p>
                     </div>
                     <button type="submit" class="buy-btn m-0 w-25">
-                        Submit
+                        Post
                     </button>
                 </div>
             </form>
-
+            @else
+            <p class="mb-5">
+                <a href="/register">Register </a>or <a href="/login">Log in</a>
+                to leave a comment
+            </p>
+            @endauth
         </div>
         <x-comments :comments="$article->comments" />
 

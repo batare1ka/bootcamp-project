@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Brand::factory()->count(20)
+        Brand::factory()->count(30)
         ->has(Product::factory()
         ->has(Category::factory())
         ->has(ProductsDetail::factory())

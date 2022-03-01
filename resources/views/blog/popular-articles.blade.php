@@ -2,26 +2,19 @@
     <h3 class="text-center mb-2">Most Popular</h3>
     <hr style="height: 3px; width: 40px; margin:0 auto 16px" />
     <ul articles-list>
-        <template popular-artcles-template>
-            <li>
-                <div class="card mb-3 position-relative" style="max-width: 540px;">
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      </span>
-                    <div class="row g-0">
-                        <div class="col-md-4 bg-image">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title fs-5">Card title</h5>
-                                <p class="card-text fs-6">This is a wider card with supporting text below as a natural
-                                    lead-in
-                                    to additional content. This content is a little bit longer.</p>
-                                <p class="card-text fs-6"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
+        <li>
+            <template popular-artcles-template>
+            <div class="blog-card">
+                <img class="blog-img"
+                    src="https://user-images.githubusercontent.com/16360374/37567282-e1932872-2a81-11e8-807b-efc5a997f2f1.jpg" />
+                <div class="text-overlay">
+                    <h2>Essential Atom Packages</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales posuere felis non
+                        efficitur. Mauris mollis elit urna, id tempus... &nbsp;&nbsp;<a href="#" class="read-more">Read
+                            More</a></p>
                 </div>
-            </li>
-        </template>
+            </div>
+            </template>
+        </li>
     </ul>
 </section>

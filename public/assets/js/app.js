@@ -19307,10 +19307,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/css/login.css":
-/*!*********************************!*\
-  !*** ./resources/css/login.css ***!
-  \*********************************/
+/***/ "./resources/css/register.css":
+/*!************************************!*\
+  !*** ./resources/css/register.css ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19678,7 +19678,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 			"assets/css/style": 0,
 /******/ 			"assets/css/sproduct": 0,
 /******/ 			"assets/css/shop": 0,
-/******/ 			"assets/css/login": 0
+/******/ 			"assets/css/register": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -19728,11 +19728,11 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/login"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/login"], () => (__webpack_require__("./resources/css/login.css")))
-/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/login"], () => (__webpack_require__("./resources/css/shop.css")))
-/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/login"], () => (__webpack_require__("./resources/css/sproduct.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/login"], () => (__webpack_require__("./resources/css/style.css")))
+/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/register"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/register"], () => (__webpack_require__("./resources/css/register.css")))
+/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/register"], () => (__webpack_require__("./resources/css/shop.css")))
+/******/ 	__webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/register"], () => (__webpack_require__("./resources/css/sproduct.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/css/style","assets/css/sproduct","assets/css/shop","assets/css/register"], () => (__webpack_require__("./resources/css/style.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
