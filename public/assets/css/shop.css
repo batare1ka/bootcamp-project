@@ -1,0 +1,31 @@
+.product img {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+
+#featured>div.row.mx-auto.container>nav>ul>li.page-item.active>a {
+    background-color: rgb(42, 42, 44);
+    border: none;
+}
+
+#featured>div.row.mx-auto.container>nav>ul>li:nth-child(n):hover>a {
+    background-color: coral;
+    color: white;
+}
+.ajax-load{
+    text-align: center;
+    display: none;
+    transition: 1s ease;
+    margin-top: 30px;
+}
+
+.preloader {
+    width: 120px;
+    height: 120px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    margin-bottom: 30px; 
+}

@@ -1,0 +1,15 @@
+{
+    "/assets/js/app.js": "/assets/js/app.js",
+    "/assets/js/cart.js": "/assets/js/cart.js",
+    "/assets/js/blog.js": "/assets/js/blog.js",
+    "/assets/js/products.js": "/assets/js/products.js",
+    "/assets/js/search-bar.js": "/assets/js/search-bar.js",
+    "/assets/js/home.js": "/assets/js/home.js",
+    "/assets/js/product-details.js": "/assets/js/product-details.js",
+    "/assets/js/register.js": "/assets/js/register.js",
+    "/assets/js/login.js": "/assets/js/login.js",
+    "/assets/css/style.css": "/assets/css/style.css",
+    "/assets/css/sproduct.css": "/assets/css/sproduct.css",
+    "/assets/css/shop.css": "/assets/css/shop.css",
+    "/assets/css/register.css": "/assets/css/register.css"
+}

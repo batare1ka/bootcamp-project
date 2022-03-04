@@ -1,0 +1,46 @@
+.small-img-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col {
+    flex-basis: 24%;
+    cursor: pointer;
+}
+
+.sproduct select {
+    display: block;
+    padding: 5px 10px;
+
+}
+
+.sproduct input {
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.sproduct input:focus {
+    outline: none;
+}
+
+.buy-btn {
+    background-color: #fb774b;
+    opacity: 1;
+    transition: 0.3s all;
+}
+
+.add__to-cart:hover {
+    background-color: #1d1d1d;
+    color: aliceblue;
+}
+
+.add__to-cart:disabled,
+.add__to-cart[disabled] {
+    cursor: not-allowed;
+    border: 1px solid #999999;
+    background-color: rgb(229, 229, 229);
+    color: #666666;
+}
